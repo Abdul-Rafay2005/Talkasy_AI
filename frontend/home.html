@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TalksyAI - Home</title>
+  <style>
+    /* ===== Global Styles ===== */
+    :root {
+      --bg: #0b1220;
+      --card: #121a2e;
+      --text: #e7ecf3;
+      --muted: #98a2b3;
+      --accent: #4f8cff;
+      --border: rgba(255,255,255,0.08);
+      --shadow: rgba(0,0,0,0.3);
+    }
+    :root.light {
+      --bg: #f5f7fa;
+      --card: #ffffff;
+      --text: #1a1a1a;
+      --muted: #555;
+      --accent: #2a6df4;
+      --border: rgba(0,0,0,0.08);
+      --shadow: rgba(0,0,0,0.2);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      scroll-behavior: smooth;
+      padding: 20px;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      position: fixed; top: 20px; right: 20px;
+      padding: 10px 14px; border-radius: 10px; border: none;
+      background: var(--card); color: var(--text);
+      cursor: pointer; font-size: 16px; box-shadow: 0 4px 10px var(--shadow);
+      transition: all 0.3s;
+      z-index: 100;
+    }
+    .theme-toggle:hover { opacity: 0.85; }
+
+    .center-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 50px;
+      width: 100%;
+      max-width: 1100px;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #4f8cff, #3ac3ff);
+      padding: 80px 40px;
+      border-radius: 20px;
+      color: #fff;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 8px 25px var(--shadow);
+      animation: fadeIn 1s ease-in;
+    }
+    .hero h1 { font-size: 56px; margin-bottom: 20px; text-shadow: 2px 2px 10px rgba(0,0,0,0.4); }
+    .hero p { font-size: 20px; line-height: 1.6; margin-bottom: 30px; }
+    .hero .btn {
+      padding: 16px 30px;
+      font-size: 20px;
+      border-radius: 12px;
+      background: #fff;
+      color: #4f8cff;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .hero .btn:hover { transform: scale(1.05); }
+
+    @keyframes fadeIn { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
+
+    /* Cards Section */
+    .cards-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      width: 100%;
+    }
+    .info-card {
+      background: var(--card);
+      padding: 25px 20px;
+      width: 300px;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px var(--shadow);
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-align: left;
+    }
+    .info-card:hover { transform: translateY(-8px); box-shadow: 0 15px 40px var(--shadow); }
+    .info-card h3 { margin-bottom: 15px; color: var(--accent); font-size: 22px; }
+    .info-card p { font-size: 16px; line-height: 1.6; }
+
+    /* Contributors */
+    .contributors-list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .contributors-list li {
+      background: var(--card);
+      padding: 14px 24px;
+      border-radius: 14px;
+      box-shadow: 0 6px 18px var(--shadow);
+      font-weight: 600;
+      width: 240px;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+    .contributors-list li:hover { transform: translateY(-3px); box-shadow: 0 12px 25px var(--shadow); }
+
+    /* Tech Stack */
+    .tech-stack { text-align: center; margin-top: 50px; display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+    .tech-stack span {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-weight: 700;
+      transition: transform 0.2s;
+    }
+    .tech-stack span:hover { transform: scale(1.1); }
+
+    /* Section Titles */
+    .section-title { font-size: 28px; margin-bottom: 20px; color: var(--accent); text-align: center; }
+
+    /* How it Works */
+    .how-it-works { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; width: 100%; }
+    .step-card { background: var(--card); padding: 20px; border-radius: 16px; width: 250px; box-shadow: 0 8px 25px var(--shadow); transition: transform 0.3s; }
+    .step-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px var(--shadow); }
+    .step-card h4 { color: var(--accent); margin-bottom: 10px; }
+    .step-card p { font-size: 15px; line-height: 1.5; }
+
+    /* Testimonials */
+    .testimonial { background: var(--card); padding: 25px; border-radius: 16px; width: 320px; box-shadow: 0 8px 25px var(--shadow); margin: 10px; }
+    .testimonial p { font-style: italic; line-height: 1.5; margin-bottom: 10px; }
+    .testimonial span { font-weight: 700; color: var(--accent); }
+
+    /* Footer */
+    footer { margin-top: 60px; text-align: center; font-size: 14px; color: var(--muted); }
+    footer a { color: var(--accent); text-decoration: none; margin: 0 5px; }
+    footer a:hover { text-decoration: underline; }
+
+  </style>
+</head>
+<body>
+
+  <button class="theme-toggle" id="theme-toggle">🌙 Dark/Light</button>
+
+  <div class="center-container">
+
+    <!-- Hero Section -->
+    <div class="hero">
+      <h1>✨ Welcome to TalksyAI</h1>
+      <p>Meet TalksyAI, your modern AI chat assistant powered by Google Gemini 🤖. Quick, concise, and emoji-friendly responses make chatting fun and productive!</p>
+      <button class="btn" id="chat-btn">💬 Try Chat Box</button>
+    </div>
+
+    <!-- Info Cards -->
+    <div class="cards-section">
+      <div class="info-card">
+        <h3>Why TalksyAI? 🤔</h3>
+        <p>Fast answers, friendly emojis, concise formatting, and a sleek interface for smooth chatting.</p>
+      </div>
+      <div class="info-card">
+        <h3>Features ⚡</h3>
+        <p>✅ Short & precise answers<br>✅ Emoji-supported responses<br>✅ Easy-to-use interface<br>✅ Personalized AI experience</p>
+      </div>
+      <div class="info-card">
+        <h3>Contributors 👨‍💻</h3>
+        <ul class="contributors-list">
+          <li>AMAN - Frontend Developer</li>
+          <li>ABDUL RAFAY - Backend Developer</li>
+          <li>UNKNOWN - AI Integration & Support</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- How it Works Section -->
+    <div>
+      <h2 class="section-title">How it Works 🚀</h2>
+      <div class="how-it-works">
+        <div class="step-card">
+          <h4>1. Ask a Question</h4>
+          <p>Type your query into TalksyAI and get instant answers with emojis.</p>
+        </div>
+        <div class="step-card">
+          <h4>2. Smart Response</h4>
+          <p>Gemini AI processes your question and generates concise responses.</p>
+        </div>
+        <div class="step-card">
+          <h4>3. Learn & Interact</h4>
+          <p>Use the chat to explore new topics, get suggestions, and have fun!</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div>
+      <h2 class="section-title">Testimonials 💬</h2>
+      <div class="cards-section">
+        <div class="testimonial">
+          <p>"TalksyAI makes chatting with AI fun and easy!"</p>
+          <span>- Sarah K.</span>
+        </div>
+        <div class="testimonial">
+          <p>"I love how concise and helpful the AI responses are."</p>
+          <span>- John D.</span>
+        </div>
+        <div class="testimonial">
+          <p>"Emoji responses make the chat feel more human and friendly!"</p>
+          <span>- Priya M.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tech Stack -->
+    <div>
+      <h2 class="section-title">Tech Stack 🛠️</h2>
+      <div class="tech-stack">
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>JavaScript</span>
+        <span>Python</span>
+        <span>FastAPI</span>
+        <span>Gemini AI</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 TalksyAI. All rights reserved. | 
+    <a href="#">Twitter</a> | 
+    <a href="#">GitHub</a> | 
+    <a href="#">Contact</a>
+  </footer>
+
+  <script>
+    const API_URL = "http://127.0.0.1:8787/api";
+
+    // Redirect if not logged in
+    if (!localStorage.getItem("token")) window.location = "index.html";
+
+    // Chat button
+    document.getElementById("chat-btn").addEventListener("click", () => {
+      window.location = "chat.html";
+    });
+
+    // Theme Toggle
+    const themeToggleBtn = document.getElementById("theme-toggle");
+    const htmlEl = document.documentElement;
+    if(localStorage.getItem("theme") === "light") htmlEl.classList.add("light");
+    themeToggleBtn.addEventListener("click", () => {
+      htmlEl.classList.toggle("light");
+      localStorage.setItem("theme", htmlEl.classList.contains("light") ? "light" : "dark");
+    });
+  </script>
+
+</body>
+</html>

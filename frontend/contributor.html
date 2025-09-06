@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TalksyAI - Contributors</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Custom styles for contributors page */
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .header h1 {
+      font-size: 36px;
+      margin-bottom: 6px;
+      color: var(--accent);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    .header p {
+      font-size: 16px;
+      color: var(--muted);
+    }
+
+    .contributors-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      font-size: 16px;
+    }
+
+    .contributors-list li {
+      background: var(--card);
+      padding: 14px 20px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: transform 0.2s;
+    }
+
+    .contributors-list li:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
+
+    .role {
+      font-weight: 600;
+      color: var(--accent);
+      font-size: 14px;
+    }
+
+    .row {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .btn {
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      background: var(--accent);
+      color: #fff;
+      transition: transform 0.1s, box-shadow 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="center">
+    <div class="card auth">
+      <!-- Header -->
+      <div class="header">
+        <h1>👨‍💻 Contributors</h1>
+        <p>Meet the people who helped build TalksyAI</p>
+      </div>
+
+      <!-- Contributors List -->
+      <ul class="contributors-list">
+        <li>
+          <span>AMAN</span>
+          <span class="role">Frontend Developer</span>
+        </li>
+        <li>
+          <span>ABDUL RAFAY</span>
+          <span class="role">Backend Developer</span>
+        </li>
+        <li>
+          <span>UNKNOWN</span>
+          <span class="role">AI Integration & Support</span>
+        </li>
+      </ul>
+
+      <!-- Back to Home Button -->
+      <div class="row">
+        <button class="btn" onclick="window.location='home.html'">🏠 Back to Home</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Redirect to login if no token
+    if (!localStorage.getItem("token")) {
+      window.location = "index.html";
+    }
+  </script>
+</body>
+</html>
